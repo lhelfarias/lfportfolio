@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navigait — Lhel Farías</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Source+Sans+3:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #fff; color: rgb(0,0,0); -webkit-font-smoothing: antialiased; }
+
+    .site-nav { position: sticky; top: 0; z-index: 100; width: 100%; height: 95.69px; background: rgba(255,255,255,0.95); border-bottom: 1px solid rgb(226,232,240); backdrop-filter: blur(8px); display: flex; align-items: center; padding: 0 64px; justify-content: space-between; }
+    .nav-ul { display: flex; gap: 40px; align-items: center; list-style: none; }
+    .nav-ul li { position: relative; }
+    .nav-ul a { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14.4px; color: rgb(71,85,105); text-decoration: none; white-space: nowrap; transition: color 0.15s; }
+    .nav-ul a:hover { color: #4F46E5; }
+    .nav-dropdown { position: absolute; top: calc(100% + 18px); left: 50%; transform: translateX(-50%); background: #fff; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); border: 1px solid rgb(226,232,240); min-width: 230px; display: none; flex-direction: column; overflow: hidden; z-index: 200; }
+    .nav-work:hover .nav-dropdown { display: flex; }
+    .nav-dropdown a { display: block; padding: 12px 20px; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 14px; color: rgb(71,85,105); text-decoration: none; white-space: nowrap; transition: background 0.12s, color 0.12s; }
+    .nav-dropdown a:hover { background: rgb(244,245,247); color: #4F46E5; }
+
+    .page-wrap { display: flex; flex-direction: column; align-items: center; }
+    .content-area { width: 100%; max-width: 1400px; display: flex; flex-direction: column; gap: 90px; padding: 64px 32px; }
+
+    .sec-heading { border-bottom: 2px solid rgb(0,0,0); padding-bottom: 16px; margin-bottom: 40px; }
+    .sec-heading h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 60px; line-height: 72px; letter-spacing: -0.5px; color: rgb(0,0,0); }
+
+    .card-label { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; }
+    .dot-i { width: 8px; height: 8px; border-radius: 4px; background: #4F46E5; flex-shrink: 0; }
+    .label-text { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13.6px; letter-spacing: 1.5px; color: rgb(0,0,0); text-transform: uppercase; }
+
+    .hero-card { border-radius: 16px; background: rgb(244,245,247); box-shadow: inset 0 0 0 1px rgb(226,232,240); overflow: hidden; display: flex; flex-direction: row; min-height: 500px; }
+    .hero-content { flex: 0 0 50%; width: 50%; padding: 64px; display: flex; flex-direction: column; gap: 20px; justify-content: center; }
+    .client-badge { display: inline-flex; padding: 5.39px 16px 6.86px; border-radius: 50px; background: rgb(0,0,0); font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12.8px; line-height: 20.48px; color: #fff; white-space: nowrap; width: fit-content; }
+    .project-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 40px; line-height: 48px; letter-spacing: -1px; color: rgb(0,0,0); }
+    .skills-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-pill { display: inline-flex; align-items: center; padding: 6px 14px; border-radius: 40px; border: 1.5px solid #4F46E5; font-family: 'Source Sans 3', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 1px; color: #4F46E5; white-space: nowrap; }
+    .proj-desc { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 17.6px; line-height: 28.16px; color: rgb(71,85,105); }
+    .proj-metrics { border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1px rgb(226,232,240); padding: 23px 24px 24px; display: flex; flex-direction: column; gap: 8px; }
+    .metric-text { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15.2px; line-height: 24.32px; color: rgb(0,0,0); }
+    .hero-visual { flex: 0 0 50%; background: rgb(226,232,240); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .hero-visual img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+    .phase-section { display: flex; flex-direction: column; gap: 40px; }
+    .mockups-row { display: flex; flex-direction: row; gap: 16px; align-items: flex-start; }
+    .mockup-frame { border-radius: 8px; background: #fff; box-shadow: inset 0 0 0 1px rgb(226,232,240); display: flex; flex-direction: column; align-items: center; overflow: hidden; flex: 1; }
+    .mockup-img { width: 100%; height: 165px; object-fit: cover; display: block; }
+    .mockup-tag-wrap { padding: 10px 0 16px; display: flex; justify-content: center; }
+    .mockup-tag { background: rgb(226,232,240); border-radius: 4px; padding: 4.8px 9.6px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 11.2px; letter-spacing: 1px; color: rgb(71,85,105); white-space: nowrap; text-transform: uppercase; }
+    .dark-screen { background: rgb(7,28,43); width: 100%; height: 165px; display: block; }
+
+    .achievements-card { border-radius: 16px; background: rgb(244,245,247); box-shadow: inset 0 0 0 1px rgb(226,232,240); padding: 20px; }
+    .achievements-columns { display: flex; gap: 40px; margin-top: 16px; }
+    .achievements-col { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+    .achievements-text { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 15.2px; line-height: 24.32px; color: rgb(71,85,105); }
+    .btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: 10.19px 28.8px 11.5px; border-radius: 50px; background: #4F46E5; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15.2px; line-height: 24.32px; color: #fff; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s; width: fit-content; }
+
+    .site-footer { border-top: 2px solid rgb(0,0,0); padding: 80px 0; display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
+    .site-footer h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 48px; line-height: 57.6px; letter-spacing: -0.5px; color: rgb(0,0,0); }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" style="flex-shrink:0;">
+    <img src="assets/logo/logo.svg" alt="Lhel Farías" style="width:97.667px;height:34.07px;display:block;">
+  </a>
+  <ul class="nav-ul">
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="index.html#experience">EXPERIENCE</a></li>
+    <li class="nav-work">
+      <a href="index.html#work">WORK</a>
+      <div class="nav-dropdown">
+        <a href="navigait.html">Navigait</a>
+        <a href="hyperlocal-bi.html">Hyperlocal BI Platform</a>
+        <a href="chemical-program.html">Chemical Program</a>
+        <a href="omnichannel-insurance.html">Omnichannel Insurance</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<main class="page-wrap">
+  <div class="content-area">
+
+    <!-- PROJECT HERO CARD -->
+    <div class="hero-card">
+      <div class="hero-content">
+        <div class="client-badge">TGS</div>
+        <h3 class="project-title">Navigait</h3>
+        <div class="skills-row">
+          <span class="skill-pill">AI Design</span>
+          <span class="skill-pill">Agentic Design</span>
+          <span class="skill-pill">UI Design</span>
+        </div>
+        <p class="proj-desc">TGS operates a global fleet of seismic survey vessels. Managing it means juggling active surveys, signed contracts, and speculative bids — simultaneously. When anything goes wrong, the schedule doesn't just shift. It cascades. Conflict detection is manual, there's no scenario modeling and no financial visibility. Objectives include increasing vessel occupancy, reducing time on approval cycle, and optimizing business metrics.</p>
+        <div class="proj-metrics">
+          <p class="metric-text" style="font-weight: 400">Achievements: Automatic conflict detection across the campaign schedule. AI agent that generates optimized scenarios with integrated financial modeling. Scenario comparison view that compresses decision time. Iterated throughout based on direct user input.</p>
+          <p class="metric-text" style="font-weight: 400">Challenge: Data required modeling before it could support reliable outputs. Infrastructure had to be built to support the financial calculations. AI integrated into the design workflow as a capability, not just a deliverable.</p>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/covers/cover-navigait.png" alt="Navigait visual">
+      </div>
+    </div>
+
+    <!-- OLD VERSION -->
+    <div class="phase-section">
+      <div class="sec-heading"><h2>Old version</h2></div>
+      <div class="card-label">
+        <div class="dot-i"></div>
+        <span class="label-text">Bid Base (Old Campaign Manager)</span>
+      </div>
+      <div class="mockups-row">
+        <div class="mockup-frame">
+          <img class="mockup-img" src="assets/navigait/od-monitoring.png" alt="Old campaign manager: monitoring view">
+          <div class="mockup-tag-wrap"><span class="mockup-tag">Monitoring</span></div>
+        </div>
+        <div class="mockup-frame">
+          <img class="mockup-img" src="assets/navigait/od-campaign.png" alt="Old campaign manager: campaign management view">
+          <div class="mockup-tag-wrap"><span class="mockup-tag">Campaign Management</span></div>
+        </div>
+        <div class="mockup-frame">
+          <img class="mockup-img" src="assets/navigait/od-save.png" alt="Old campaign manager: save campaign view">
+          <div class="mockup-tag-wrap"><span class="mockup-tag">Save Campaign</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINAL VERSION -->
+    <div class="phase-section">
+      <div class="sec-heading"><h2>Final Version</h2></div>
+      <div class="card-label">
+        <div class="dot-i"></div>
+        <span class="label-text">Navigait</span>
+      </div>
+      <div class="mockups-row">
+        <div class="mockup-frame">
+          <img class="mockup-img" src="assets/navigait/fv-monitoring.png" alt="Final version: monitoring view">
+          <div class="mockup-tag-wrap"><span class="mockup-tag">Monitoring</span></div>
+        </div>
+        <div class="mockup-frame">
+          <img class="mockup-img" src="assets/navigait/fv-scenario.png" alt="Final version: scenario modeling view">
+          <div class="mockup-tag-wrap"><span class="mockup-tag">Scenario Modeling</span></div>
+        </div>
+        <div class="mockup-frame">
+          <img class="mockup-img" src="assets/navigait/fv-finance.png" alt="Final version: financial comparison view">
+          <div class="mockup-tag-wrap"><span class="mockup-tag">Financial Comparison</span></div>
+        </div>
+        <div class="mockup-frame">
+          <img class="mockup-img" src="assets/navigait/fv-agent.png" alt="Final version: AI agent view" style="object-fit: contain;">
+          <div class="mockup-tag-wrap"><span class="mockup-tag">AI Agent</span></div>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:center;">
+        <a href="https://claude.ai/public/artifacts/3a68da14-4074-43b6-861a-8c118892c58a" target="_blank" rel="noopener" class="btn-primary">CLICK HERE FOR THE PROTOTYPE</a>
+      </div>
+      <div class="achievements-card">
+        <div class="card-label">
+          <div class="dot-i"></div>
+          <span class="label-text">Design Achievements</span>
+        </div>
+        <div class="achievements-columns">
+          <div class="achievements-col">
+            <p class="achievements-text"><strong>Monitoring</strong> — Automatic conflict detection across the campaign schedule. Drag &amp; drop interaction for scenario creation. Entry points to both manual and AI-driven optimization flows.</p>
+            <p class="achievements-text"><strong>Scenario Creation</strong> — Real-time financial modeling tied to campaign decisions. AI agent optimization anchored to business KPIs. Calculations delivered on the fly — no waiting weeks for a number.</p>
+          </div>
+          <div class="achievements-col">
+            <p class="achievements-text"><strong>Financial Comparison</strong> — Select from saved scenarios and compare financial outcomes side by side. No waiting weeks for numbers.</p>
+            <p class="achievements-text"><strong>AI Agent</strong> — Continuously monitors for internal and external conflicts, and surfaces relevant information and assistance directly within the campaign context.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <h2>Thank you</h2>
+      <a href="index.html">
+        <img src="assets/logo/logo.svg" alt="Lhel Farías" style="width:172px;height:60px;display:block;">
+      </a>
+    </footer>
+
+  </div>
+</main>
+<script>
+  // Dropdown hover delay so mouse can travel to it
+  document.querySelectorAll('.nav-work').forEach(function(item) {
+    var timeout;
+    item.addEventListener('mouseenter', function() {
+      clearTimeout(timeout);
+      var dd = item.querySelector('.nav-dropdown');
+      if (dd) dd.style.display = 'flex';
+    });
+    item.addEventListener('mouseleave', function() {
+      var dd = item.querySelector('.nav-dropdown');
+      timeout = setTimeout(function() {
+        if (dd) dd.style.display = '';
+      }, 200);
+    });
+  });
+</script>
+</body>
+</html>

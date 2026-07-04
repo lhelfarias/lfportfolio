@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hyperlocal BI Platform — Lhel Farías</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Source+Sans+3:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #fff; color: rgb(0,0,0); -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    .site-nav {
+      position: sticky; top: 0; z-index: 100; width: 100%; height: 95.69px;
+      background: rgba(255,255,255,0.95); border-bottom: 1px solid rgb(226,232,240);
+      backdrop-filter: blur(8px); display: flex; align-items: center;
+      padding: 0 64px; justify-content: space-between;
+    }
+    .nav-ul { display: flex; gap: 40px; align-items: center; list-style: none; }
+    .nav-ul li { position: relative; }
+    .nav-ul a { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14.4px; color: rgb(71,85,105); text-decoration: none; white-space: nowrap; transition: color 0.15s; }
+    .nav-ul a:hover { color: #4F46E5; }
+    .nav-dropdown { position: absolute; top: calc(100% + 18px); left: 50%; transform: translateX(-50%); background: #fff; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); border: 1px solid rgb(226,232,240); min-width: 230px; display: none; flex-direction: column; overflow: hidden; z-index: 200; }
+    .nav-work:hover .nav-dropdown { display: flex; }
+    .nav-dropdown a { display: block; padding: 12px 20px; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 14px; color: rgb(71,85,105); text-decoration: none; white-space: nowrap; transition: background 0.12s, color 0.12s; }
+    .nav-dropdown a:hover { background: rgb(244,245,247); color: #4F46E5; }
+
+    /* LAYOUT */
+    .page-wrap { display: flex; flex-direction: column; align-items: center; }
+    .content-area { width: 100%; max-width: 1400px; display: flex; flex-direction: column; gap: 90px; padding: 64px 32px; }
+
+    /* SECTION HEADING */
+    .sec-heading { border-bottom: 2px solid rgb(0,0,0); padding-bottom: 16px; margin-bottom: 40px; }
+    .sec-heading h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 60px; line-height: 72px; letter-spacing: -0.5px; color: rgb(0,0,0); }
+
+    /* CARD LABEL */
+    .card-label { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; }
+    .dot-v { width: 8px; height: 8px; border-radius: 4px; background: #4F46E5; flex-shrink: 0; }
+    .dot-i { width: 8px; height: 8px; border-radius: 4px; background: #4F46E5; flex-shrink: 0; }
+    .label-text { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; color: rgb(71,85,105); text-transform: uppercase; }
+    .sublabel { display: flex; gap: 12px; align-items: center; padding-bottom: 10px; border-bottom: 1px solid rgb(226,232,240); margin-bottom: 20px; }
+    .sublabel-text { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 1.5px; color: rgb(0,0,0); }
+
+    /* HERO PROJECT CARD */
+    .hero-card { border-radius: 16px; background: rgb(244,245,247); box-shadow: inset 0 0 0 1px rgb(226,232,240); overflow: hidden; display: flex; flex-direction: row; min-height: 500px; }
+    .hero-content { flex: 0 0 50%; width: 50%; padding: 64px; display: flex; flex-direction: column; gap: 20px; justify-content: center; }
+    .client-badge { display: inline-flex; padding: 5.39px 16px 6.86px; border-radius: 50px; background: rgb(0,0,0); font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12.8px; line-height: 20.48px; color: #fff; white-space: nowrap; width: fit-content; }
+    .project-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 40px; line-height: 48px; letter-spacing: -1px; color: rgb(0,0,0); }
+    .skills-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-pill { display: inline-flex; align-items: center; padding: 6px 14px; border-radius: 40px; border: 1.5px solid #4F46E5; font-family: 'Source Sans 3', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 1px; color: #4F46E5; white-space: nowrap; }
+    .proj-desc { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 17.6px; line-height: 28.16px; color: rgb(71,85,105); }
+    .proj-metrics { border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1px rgb(226,232,240); padding: 23px 24px 24px; display: flex; flex-direction: column; gap: 8px; }
+    .metric-text { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15.2px; line-height: 24.32px; color: rgb(0,0,0); }
+    .hero-visual { flex: 0 0 50%; background: rgb(226,232,240); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .hero-visual img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+    /* PHASE SECTIONS */
+    .phase-section { display: flex; flex-direction: column; gap: 40px; }
+    .phase-cols { display: flex; flex-direction: row; gap: 40px; align-items: flex-start; }
+    .phase-col { flex: 1; display: flex; flex-direction: column; gap: 20px; }
+
+    /* MOCKUP FRAMES */
+    .mockups-row { display: flex; flex-direction: row; gap: 16px; align-items: flex-start; }
+    .mockup-frame { border-radius: 8px; background: #fff; box-shadow: inset 0 0 0 1px rgb(226,232,240); display: flex; flex-direction: column; align-items: center; overflow: hidden; flex: 1; }
+    .mockup-img { width: 100%; object-fit: cover; display: block; }
+    .mockup-tag-wrap { padding: 10px 0 16px; display: flex; justify-content: center; }
+    .mockup-tag { background: rgb(226,232,240); border-radius: 4px; padding: 4.8px 9.6px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 11.2px; letter-spacing: 1px; color: rgb(71,85,105); white-space: nowrap; }
+
+    /* OUTCOMES CARD */
+    .outcomes-card { border-radius: 16px; background: rgb(244,245,247); box-shadow: inset 0 0 0 1px rgb(226,232,240); padding: 20px; }
+    .outcomes-text { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 15.2px; line-height: 24.32px; color: rgb(71,85,105); margin-top: 16px; }
+
+    /* FOOTER */
+    .site-footer { border-top: 2px solid rgb(0,0,0); padding: 80px 0; display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
+    .site-footer h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 48px; line-height: 57.6px; letter-spacing: -0.5px; color: rgb(0,0,0); }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" style="flex-shrink:0;">
+    <img src="assets/logo/logo.svg" alt="Lhel Farías" style="width:97.667px;height:34.07px;display:block;">
+  </a>
+  <ul class="nav-ul">
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="index.html#experience">EXPERIENCE</a></li>
+    <li class="nav-work">
+      <a href="index.html#work">WORK</a>
+      <div class="nav-dropdown">
+        <a href="navigait.html">Navigait</a>
+        <a href="hyperlocal-bi.html">Hyperlocal BI Platform</a>
+        <a href="chemical-program.html">Chemical Program</a>
+        <a href="omnichannel-insurance.html">Omnichannel Insurance</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<main class="page-wrap">
+  <div class="content-area">
+
+    <!-- PROJECT HERO CARD -->
+    <div class="hero-card">
+      <div class="hero-content">
+        <div class="client-badge">Mercedes-Benz</div>
+        <h3 class="project-title">Hyperlocal BI Platform</h3>
+        <div class="skills-row">
+          <span class="skill-pill">Data Visualization</span>
+          <span class="skill-pill">Architecture Information</span>
+          <span class="skill-pill">UI Design</span>
+        </div>
+        <p class="proj-desc">The goal is to move stakeholders from reporting to confident, data-backed action — built across three phases: descriptive (what's happening), insightful (why it's happening), and prescriptive (what to do about it).</p>
+        <div class="proj-metrics">
+          <p class="metric-text" style="font-weight: 400">Achievements: Designed the experience for a complex data visualization platform and delivered an MVP across phases 1 and 2. Iterated on user feedback until the product matched what users actually needed — not just what was initially scoped.</p>
+          <p class="metric-text" style="font-weight: 400">Challenge: Data quality needed ongoing refinement before it could carry the product. Priorities shifted as feedback came in, and Power BI's limitations required workarounds to preserve the intended experience without rebuilding from scratch.</p>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/covers/cover-hyperlocal-bi.png" alt="Hyperlocal BI Platform">
+      </div>
+    </div>
+
+    <!-- PHASE 1 -->
+    <div class="phase-section">
+      <div class="sec-heading"><h2>Phase 1: Descriptive Data</h2></div>
+
+      <!-- Landing + Compare sublabels row -->
+      <div style="display:flex;gap:40px;">
+        <div class="sublabel" style="flex:1;">
+          <div class="dot-v" style="width:10px;height:10px;border-radius:5px;"></div>
+          <span class="sublabel-text">Landing</span>
+        </div>
+        <div class="sublabel" style="flex:1;">
+          <div class="dot-v" style="width:10px;height:10px;border-radius:5px;"></div>
+          <span class="sublabel-text">Compare</span>
+        </div>
+      </div>
+
+      <div class="phase-cols">
+        <!-- Left: Landing Starting Point + Final -->
+        <div class="phase-col">
+          <div class="mockups-row" style="align-items:stretch;">
+            <div class="mockup-frame" style="max-width:220px;">
+              <img class="mockup-img" src="assets/hyperlocal/dd-landing-sp.png" alt="Landing Starting Point" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Starting Point</span></div>
+            </div>
+            <div class="mockup-frame">
+              <img class="mockup-img" src="assets/hyperlocal/dd-landing-fv.png" alt="Final Version Landing" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Final Version</span></div>
+            </div>
+          </div>
+          <div class="outcomes-card">
+            <div class="card-label"><div class="dot-v"></div><span class="label-text">Outcomes</span></div>
+            <p class="outcomes-text">The data visibility generated immediate stakeholder buy-in — but exposed three design problems: information density created cognitive overload, the lack of hierarchy made key data hard to read at a glance, and siloed presentation prevented users from connecting insights into a broader picture.</p>
+          </div>
+        </div>
+
+        <!-- Right: Compare Starting Point + Final -->
+        <div class="phase-col">
+          <div class="mockups-row" style="align-items:stretch;">
+            <div class="mockup-frame" style="max-width:220px;">
+              <img class="mockup-img" src="assets/hyperlocal/dd-compare-sp.png" alt="Compare Starting Point" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Starting Point</span></div>
+            </div>
+            <div class="mockup-frame">
+              <img class="mockup-img" src="assets/hyperlocal/dd-compare-fv.png" alt="Compare Final Version" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Final Version</span></div>
+            </div>
+          </div>
+          <div class="outcomes-card">
+            <div class="card-label"><div class="dot-v"></div><span class="label-text">Outcomes</span></div>
+            <p class="outcomes-text">The data visibility generated immediate stakeholder buy-in — but exposed three design problems: information density created cognitive overload, the lack of hierarchy made key data hard to read at a glance, and siloed presentation prevented users from connecting insights into a broader picture.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Acquisition sublabel -->
+      <div class="sublabel">
+        <div class="dot-i" style="width:10px;height:10px;border-radius:5px;"></div>
+        <span class="sublabel-text">ACQUISITION</span>
+      </div>
+      <div class="phase-cols">
+        <div class="phase-col">
+          <div class="mockups-row" style="align-items:stretch;">
+            <div class="mockup-frame" style="max-width:220px;">
+              <img class="mockup-img" src="assets/hyperlocal/dd-acquisition-sp.png" alt="Acquisition Starting Point" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Starting Point</span></div>
+            </div>
+            <div class="mockup-frame">
+              <img class="mockup-img" src="assets/hyperlocal/dd-acquisition-fv.png" alt="Acquisition Final Version" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Final Version</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="phase-col">
+          <div class="outcomes-card">
+            <div class="card-label"><div class="dot-v"></div><span class="label-text">Outcomes</span></div>
+            <p class="outcomes-text">The data visibility generated immediate stakeholder buy-in — but exposed three design problems: information density created cognitive overload, the lack of hierarchy made key data hard to read at a glance, and siloed presentation prevented users from connecting insights into a broader picture.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase-section">
+      <div class="sec-heading"><h2>Phase 2: Insightful Data</h2></div>
+      <div class="phase-cols">
+        <div class="phase-col">
+          <div class="sublabel">
+            <div class="dot-v" style="width:10px;height:10px;border-radius:5px;"></div>
+            <span class="sublabel-text">BATTLEGROUNDS</span>
+          </div>
+          <div class="mockups-row" style="align-items:stretch;">
+            <div class="mockup-frame">
+              <img class="mockup-img" src="assets/hyperlocal/id-bt-landing-sp.png" alt="Battlegrounds Landing" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Landing</span></div>
+            </div>
+            <div class="mockup-frame">
+              <img class="mockup-img" src="assets/hyperlocal/id-bt-landing-fv.png" alt="Battlegrounds Landing 1st Version" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">1st Version (Discarded)</span></div>
+            </div>
+          </div>
+          <div class="mockups-row" style="align-items:stretch;">
+            <div class="mockup-frame">
+              <img class="mockup-img" src="assets/hyperlocal/id-bt-details-sp.png" alt="Battlegrounds Details" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Details</span></div>
+            </div>
+            <div class="mockup-frame">
+              <img class="mockup-img" src="assets/hyperlocal/id-bt-details-fv.png" alt="Battlegrounds Details 1st Version" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">1st Version (Discarded)</span></div>
+            </div>
+          </div>
+          <div class="outcomes-card">
+            <div class="card-label"><div class="dot-v"></div><span class="label-text">Outcomes</span></div>
+            <p class="outcomes-text">Data visualization resulted in Cognitive Overload. The internal team delivered the final version directly within Power BI.</p>
+          </div>
+        </div>
+        <div class="phase-col">
+          <div class="sublabel">
+            <div class="dot-v" style="width:10px;height:10px;border-radius:5px;"></div>
+            <span class="sublabel-text">ELASTICITY</span>
+          </div>
+          <div class="mockups-row" style="align-items:stretch;">
+            <div class="mockup-frame">
+              <img class="mockup-img" src="assets/hyperlocal/id-el-summary-sp.png" alt="Elasticity Summary" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Summary</span></div>
+            </div>
+            <div class="mockup-frame">
+              <img class="mockup-img" src="assets/hyperlocal/id-el-summary-fv.png" alt="Elasticity Summary Final Version" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Final Version</span></div>
+            </div>
+          </div>
+          <div class="mockups-row" style="align-items:stretch;">
+            <div class="mockup-frame">
+              <img class="mockup-img" src="assets/hyperlocal/id-el-trigger-sp.png" alt="Elasticity Trigger" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Trigger</span></div>
+            </div>
+            <div class="mockup-frame">
+              <img class="mockup-img" src="assets/hyperlocal/id-el-trigger-fv.png" alt="Elasticity Trigger Final Version" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Final Version</span></div>
+            </div>
+          </div>
+          <div class="outcomes-card">
+            <div class="card-label"><div class="dot-v"></div><span class="label-text">Outcomes</span></div>
+            <p class="outcomes-text">The new information sparked stakeholder engagement. The solution lacked the granularity and flexibility needed for deeper data exploration.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sublabel">
+        <div class="dot-i" style="width:10px;height:10px;border-radius:5px;"></div>
+        <span class="sublabel-text">DEMOGRAPHICS</span>
+      </div>
+      <div class="phase-cols">
+        <div class="phase-col">
+          <div class="mockups-row" style="align-items:stretch;">
+            <div class="mockup-frame" style="max-width:220px;">
+              <img class="mockup-img" src="assets/hyperlocal/id-dm-landing-sp.png" alt="Demographics Starting Point" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Starting Point</span></div>
+            </div>
+            <div class="mockup-frame">
+              <img class="mockup-img" src="assets/hyperlocal/id-dm-landing-fv.png" alt="Demographics Latest Version" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Latest Version (Discarded)</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="phase-col">
+          <div class="outcomes-card">
+            <div class="card-label"><div class="dot-v"></div><span class="label-text">Outcomes</span></div>
+            <p class="outcomes-text">The data required high molding efforts before it could be considered reliable. Priorities shifted toward lower-effort initiatives that offered quicker wins and stronger business interest.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase-section">
+      <div class="sec-heading"><h2>Phase 3: Prescriptive Data</h2></div>
+
+      <div class="sublabel">
+        <div class="dot-i" style="width:10px;height:10px;border-radius:5px;"></div>
+        <span class="sublabel-text">BATTLEGROUNDS</span>
+      </div>
+      <div class="mockups-row" style="align-items:stretch;">
+        <div class="mockup-frame">
+          <img class="mockup-img" src="assets/hyperlocal/pd-bt-landing-sp.png" alt="Battlegrounds Starting Point" style="object-fit:contain;max-height:500px;">
+          <div class="mockup-tag-wrap"><span class="mockup-tag">Starting Point</span></div>
+        </div>
+        <div class="mockup-frame">
+          <img class="mockup-img" src="assets/hyperlocal/pd-bt-overview.png" alt="Battlegrounds Overview" style="object-fit:contain;max-height:500px;">
+          <div class="mockup-tag-wrap"><span class="mockup-tag">Overview</span></div>
+        </div>
+        <div class="mockup-frame">
+          <img class="mockup-img" src="assets/hyperlocal/pd-bt-summary.png" alt="Battlegrounds Summary" style="object-fit:contain;max-height:500px;">
+          <div class="mockup-tag-wrap"><span class="mockup-tag">Summary</span></div>
+        </div>
+        <div class="mockup-frame">
+          <img class="mockup-img" src="assets/hyperlocal/pd-bt-detail.png" alt="Battlegrounds Detail" style="object-fit:contain;max-height:500px;">
+          <div class="mockup-tag-wrap"><span class="mockup-tag">Detail</span></div>
+        </div>
+      </div>
+
+      <div class="sublabel" style="margin-top:20px;">
+        <div class="dot-i" style="width:10px;height:10px;border-radius:5px;"></div>
+        <span class="sublabel-text">Elasticities</span>
+      </div>
+      <div class="phase-cols">
+        <div class="phase-col">
+          <div class="sublabel">
+            <span style="font-family:'Inter',sans-serif;font-weight:700;font-size:16px;letter-spacing:1.5px;color:rgb(71,85,105);">DEMOGRAPHICS</span>
+          </div>
+          <div class="mockups-row" style="align-items:stretch;">
+            <div class="mockup-frame">
+              <img class="mockup-img" src="assets/hyperlocal/pd-elasticity-sp.png" alt="Demographics Starting Point" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Starting Point</span></div>
+            </div>
+            <div class="mockup-frame">
+              <img class="mockup-img" src="assets/hyperlocal/pd-elasticity-fv.png" alt="Demographics Final Version" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Final version</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="phase-col">
+          <div class="sublabel">
+            <span style="font-family:'Inter',sans-serif;font-weight:700;font-size:16px;letter-spacing:1.5px;color:rgb(71,85,105);">Recommendations</span>
+          </div>
+          <div class="mockups-row" style="align-items:stretch;">
+            <div class="mockup-frame">
+              <img class="mockup-img" src="assets/hyperlocal/pd-recommendations-sp.png" alt="Recommendations Starting Point" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Starting Point</span></div>
+            </div>
+            <div class="mockup-frame">
+              <img class="mockup-img" src="assets/hyperlocal/pd-recommendations-fv.png" alt="Simulation Final Version" style="object-fit:contain;max-height:500px;">
+              <div class="mockup-tag-wrap"><span class="mockup-tag">Final version</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <h2>Thank you</h2>
+      <a href="index.html">
+        <img src="assets/logo/logo.svg" alt="Lhel Farías" style="width:172px;height:60px;display:block;">
+      </a>
+    </footer>
+
+  </div>
+</main>
+<script>
+  // Dropdown hover delay so mouse can travel to it
+  document.querySelectorAll('.nav-work').forEach(function(item) {
+    var timeout;
+    item.addEventListener('mouseenter', function() {
+      clearTimeout(timeout);
+      var dd = item.querySelector('.nav-dropdown');
+      if (dd) dd.style.display = 'flex';
+    });
+    item.addEventListener('mouseleave', function() {
+      var dd = item.querySelector('.nav-dropdown');
+      timeout = setTimeout(function() {
+        if (dd) dd.style.display = '';
+      }, 200);
+    });
+  });
+</script>
+</body>
+</html>

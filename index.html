@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lhel Farías — Senior UX/UI Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Source+Sans+3:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #fff; color: rgb(0,0,0); -webkit-font-smoothing: antialiased; }
+
+    /* ── NAV ── */
+    .site-nav {
+      position: sticky; top: 0; z-index: 100;
+      width: 100%; height: 95.69px;
+      background: rgba(255,255,255,0.95);
+      border-bottom: 1px solid rgb(226,232,240);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center;
+      padding: 0 64px;
+      justify-content: space-between;
+    }
+    .nav-ul { display: flex; gap: 40px; align-items: center; list-style: none; }
+    .nav-ul li { position: relative; }
+    .nav-ul a {
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14.4px;
+      color: rgb(71,85,105); text-decoration: none; white-space: nowrap;
+      line-height: 23px; transition: color 0.15s; cursor: pointer;
+    }
+    .nav-ul a:hover { color: #4F46E5; }
+
+    .nav-dropdown {
+      position: absolute; top: calc(100% + 8px); left: 50%;
+      transform: translateX(-50%);
+      background: #fff; border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      border: 1px solid rgb(226,232,240);
+      min-width: 230px; display: none; flex-direction: column;
+      overflow: hidden; z-index: 200;
+    }
+    .nav-work:hover .nav-dropdown { display: flex; }
+    .nav-dropdown a {
+      display: block; padding: 12px 20px;
+      font-family: 'Inter', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgb(71,85,105); text-decoration: none; white-space: nowrap;
+      transition: background 0.12s, color 0.12s;
+    }
+    .nav-dropdown a:hover { background: rgb(244,245,247); color: #4F46E5; }
+
+    /* ── LAYOUT ── */
+    .page-wrap { display: flex; flex-direction: column; align-items: center; }
+    .content-area {
+      width: 100%; max-width: 1400px;
+      display: flex; flex-direction: column; gap: 96px;
+      padding: 64px 32px;
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      border-bottom: 2px solid rgb(0,0,0);
+      padding-bottom: 16px; margin-bottom: 32px;
+    }
+    .section-title h2 {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 48px; line-height: 57.6px; letter-spacing: -0.5px; color: rgb(0,0,0);
+    }
+
+    /* ── CARD LABEL ── */
+    .card-label { display: flex; gap: 10px; align-items: center; }
+    .dot-v { width: 8px; height: 8px; border-radius: 4px; background: #4F46E5; flex-shrink: 0; }
+    .label-text {
+      font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12px;
+      letter-spacing: 1.5px; color: rgb(71,85,105); text-transform: uppercase;
+    }
+
+    /* ── SKILL PILL ── */
+    .skill-pill {
+      display: inline-flex; align-items: center; padding: 6px 14px;
+      border-radius: 40px; border: 1.5px solid #4F46E5;
+      font-family: 'Source Sans 3', sans-serif; font-weight: 700;
+      font-size: 12px; letter-spacing: 1px; color: #4F46E5; white-space: nowrap;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 10.19px 28.8px 11.5px; border-radius: 50px;
+      background: #4F46E5;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 15.2px; line-height: 24.32px; color: #fff;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s; width: fit-content;
+    }
+    .btn-primary:hover { background: #4F46E5; }
+
+    /* ── HERO ── */
+    .hero-bento {
+      display: flex; flex-direction: row; gap: 23.1px; padding: 0 40px;
+      border-radius: 16px; background: #fff;
+      box-shadow: inset 0 0 0 2px rgb(0,0,0);
+      min-height: 585.89px; align-items: flex-start;
+    }
+    .hero-photo-col {
+      width: 431px; flex-shrink: 0; display: flex; flex-direction: column;
+      gap: 23.1px; padding: 40px 0; align-items: center; align-self: stretch;
+    }
+    .hero-photo {
+      width: 100%; aspect-ratio: 1 / 1; border-radius: 8px;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 5%; display: block; }
+    .welcome-badge {
+      width: 249px; height: 40px; border-radius: 50px;
+      background: rgb(244,245,247);
+      box-shadow: inset 0 0 0 1px rgb(226,232,240);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13.6px;
+      letter-spacing: 1px; color: #4F46E5; white-space: nowrap; flex-shrink: 0;
+    }
+    .hero-content {
+      flex: 1; display: flex; flex-direction: column;
+      gap: 23px; padding: 80px 0; align-items: center; justify-content: center;
+    }
+    .hero-content h1 {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 72px; line-height: 79.2px; letter-spacing: -2px;
+      color: rgb(0,0,0); text-align: center; max-width: 1000px;
+      text-wrap: pretty;
+    }
+    .hero-content p {
+      font-family: 'Inter', sans-serif; font-weight: 400;
+      font-size: 20px; line-height: 32px; color: rgb(71,85,105);
+      text-align: center; max-width: 700px;
+    }
+
+    /* ── EXPERIENCE BENTO ── */
+    .exp-grid { display: flex; flex-direction: row; gap: 24px; align-items: stretch; }
+
+    .stmt-card {
+      width: 542.66px; flex-shrink: 0; border-radius: 16px;
+      background: rgb(244,245,247);
+      box-shadow: inset 0 0 0 1px rgb(226,232,240);
+      padding: 40px; display: flex; flex-direction: column; gap: 20px;
+    }
+    .statement-text {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 400;
+      font-size: 25.6px; line-height: 35.84px; letter-spacing: -0.5px; color: rgb(0,0,0);
+    }
+    .subsection { display: flex; flex-direction: column; gap: 10px; }
+
+    .education-row { display: flex; flex-direction: row; gap: 20px; align-items: flex-start; }
+    .edu-item { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .edu-logo-wrap { height: 50px; display: flex; align-items: center; }
+    .edu-logo-wrap img { max-height: 50px; max-width: 110px; object-fit: contain; }
+    .edu-desc {
+      font-family: 'Roboto', 'Inter', sans-serif; font-weight: 400;
+      font-size: 13px; line-height: 18px; letter-spacing: 0.25px; color: rgb(71,85,105);
+    }
+    .skills-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .tools-row { display: flex; flex-direction: row; gap: 16px; align-items: center; flex-wrap: wrap; }
+
+    .timeline-card {
+      flex: 1; border-radius: 16px; background: #fff;
+      box-shadow: inset 0 0 0 1px rgb(226,232,240);
+      padding: 40px; display: flex; flex-direction: column; gap: 22.68px;
+    }
+    .timeline-wrap {
+      position: relative; display: flex; flex-direction: column;
+      gap: 39px; padding: 0 32px;
+    }
+    .timeline-line {
+      position: absolute; left: 0; top: 2px; bottom: 0;
+      width: 2px; background: rgb(226,232,240);
+    }
+    .tl-item { position: relative; display: flex; flex-direction: column; gap: 1px; }
+    .tl-dot {
+      position: absolute; left: -38px; top: 5px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #4F46E5;
+      box-shadow: inset 0 0 0 3px #fff;
+    }
+    .tl-date {
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14.4px;
+      color: rgb(71,85,105); line-height: 23px;
+    }
+    .tl-role {
+      font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15.2px;
+      color: rgb(0,0,0); line-height: 24.32px;
+    }
+    .tl-company {
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14.4px;
+      color: #4F46E5; line-height: 23px;
+    }
+    .tl-desc {
+      font-family: 'Inter', sans-serif; font-weight: 400; font-size: 15.2px;
+      color: rgb(71,85,105); line-height: 24.32px; margin-top: 6px;
+    }
+
+    /* ── PROJECT CARDS ── */
+    .projects-stack { display: flex; flex-direction: column; gap: 60px; }
+    .project-card {
+      border-radius: 16px; background: rgb(244,245,247);
+      box-shadow: inset 0 0 0 1px rgb(226,232,240);
+      overflow: hidden; display: flex; flex-direction: row; min-height: 500px;
+    }
+    .project-card:hover .project-visual img { transform: scale(1.02); }
+    .proj-content {
+      flex: 0 0 50%; width: 50%; padding: 64px;
+      display: flex; flex-direction: column; gap: 20px; justify-content: center;
+    }
+    .client-badge {
+      display: inline-flex; padding: 5.39px 16px 6.86px; border-radius: 50px;
+      background: rgb(0,0,0);
+      font-family: 'Inter', sans-serif; font-weight: 700;
+      font-size: 12.8px; line-height: 20.48px; color: #fff;
+      white-space: nowrap; width: fit-content;
+    }
+    .proj-title {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 40px; line-height: 48px; letter-spacing: -1px; color: rgb(0,0,0);
+    }
+    .proj-desc {
+      font-family: 'Inter', sans-serif; font-weight: 400;
+      font-size: 17.6px; line-height: 28.16px; color: rgb(71,85,105);
+    }
+    .proj-metrics {
+      border-radius: 12px; background: #fff;
+      box-shadow: inset 0 0 0 1px rgb(226,232,240);
+      padding: 23px 24px 24px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .metric-text {
+      font-family: 'Inter', sans-serif; font-weight: 700;
+      font-size: 15.2px; line-height: 24.32px; color: rgb(0,0,0);
+    }
+    .project-visual {
+      flex: 0 0 50%; background: rgb(226,232,240);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; align-self: stretch;
+    }
+    .project-visual img {
+      width: 100%; height: 100%; object-fit: contain;
+      transition: transform 0.4s ease; display: block;
+    }
+    .project-visual-empty { background: rgb(226,232,240); flex: 0 0 50%; align-self: stretch; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      border-top: 2px solid rgb(0,0,0); padding: 80px 0;
+      display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%;
+    }
+    .site-footer h2 {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 48px; line-height: 57.6px; letter-spacing: -0.5px; color: rgb(0,0,0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html" data-scroll-top style="flex-shrink:0;">
+    <img src="assets/logo/logo.svg" alt="Lhel Farías" style="width:97.667px;height:34.07px;display:block;">
+  </a>
+  <ul class="nav-ul">
+    <li><a href="index.html" data-scroll-top>HOME</a></li>
+    <li><a href="#experience">EXPERIENCE</a></li>
+    <li class="nav-work">
+      <a href="#work">WORK</a>
+      <div class="nav-dropdown">
+        <a href="navigait.html">Navigait</a>
+        <a href="hyperlocal-bi.html">Hyperlocal BI Platform</a>
+        <a href="chemical-program.html">Chemical Program</a>
+        <a href="omnichannel-insurance.html">Omnichannel Insurance</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<!-- MAIN -->
+<main class="page-wrap">
+  <div class="content-area">
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-bento">
+        <div class="hero-photo-col">
+          <div class="hero-photo">
+            <img src="assets/photos/selfie.png" alt="Lhel Farías">
+          </div>
+          <div class="welcome-badge">Hello! I'm Lhel Farías 👋</div>
+        </div>
+        <div class="hero-content">
+          <h1>I find where user needs and business goals overlap.</h1>
+          <p>Senior UX/UI Designer with over 10 years across banking, energy, healthcare, and automotive — industries where the workflows are as complex as the stakes. The processes are intricate, the data is dense, and the numbers behind them are real. My objectives are better decisions, faster work, and measurable outcomes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-title"><h2>Experience</h2></div>
+      <div class="exp-grid">
+
+        <!-- Statement & Skills -->
+        <div class="stmt-card">
+          <p class="statement-text">Every project starts in a different place. My first move is always to map where things actually stand — technology, research, team dynamics — and build the right strategy from there. I work across the full team, early not late. The fastest path to a good solution is knowing the problem, the people, and the context.</p>
+
+          <div class="subsection">
+            <div class="card-label">
+              <div class="dot-v"></div>
+              <span class="label-text">Education</span>
+            </div>
+            <div class="education-row">
+              <div class="edu-item">
+                <div class="edu-logo-wrap">
+                  <img src="assets/logos/logo-usm.png" alt="USM">
+                </div>
+                <span class="edu-desc">BA Audiovisual Communications</span>
+              </div>
+              <div class="edu-item">
+                <div class="edu-logo-wrap">
+                  <img src="assets/logos/logo-usc.png" alt="USC">
+                </div>
+                <span class="edu-desc">Specialization Interaction Design</span>
+              </div>
+              <div class="edu-item">
+                <div class="edu-logo-wrap">
+                  <img src="assets/logos/logo-nng.png" alt="Nielsen Norman Group Certificate">
+                </div>
+                <span class="edu-desc">Research &amp; Management Certified</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsection">
+            <div class="card-label">
+              <div class="dot-v"></div>
+              <span class="label-text">Core Toolkit</span>
+            </div>
+            <div class="skills-row">
+              <span class="skill-pill">AI For Design</span>
+              <span class="skill-pill">User Research</span>
+              <span class="skill-pill">Architecture Information</span>
+              <span class="skill-pill">Design Systems</span>
+              <span class="skill-pill">Data Visualization</span>
+              <span class="skill-pill">Workshops</span>
+            </div>
+          </div>
+
+          <div class="subsection">
+            <div class="card-label">
+              <div class="dot-v"></div>
+              <span class="label-text">Tools</span>
+            </div>
+            <div class="tools-row">
+              <img src="assets/tools/logo-figma.png" alt="Figma" style="height:36px;width:auto;display:block;">
+              <img src="assets/tools/logo-claude.png" alt="Claude" style="height:36px;width:auto;display:block;">
+              <img src="assets/tools/logo-sketch.png" alt="Sketch" style="height:36px;width:auto;display:block;">
+              <img src="assets/tools/logo-photoshop.png" alt="Photoshop" style="height:36px;width:auto;display:block;">
+              <img src="assets/tools/logo-illustrator.png" alt="Illustrator" style="height:36px;width:auto;display:block;">
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline-card">
+          <div class="card-label">
+            <div class="dot-v"></div>
+            <span class="label-text">Experience Timeline</span>
+          </div>
+          <div class="timeline-wrap">
+            <div class="timeline-line"></div>
+
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <span class="tl-date">Nov 2021 — Present</span>
+              <span class="tl-role">Senior UX/UI Designer</span>
+              <span class="tl-company">EPAM Systems Inc.</span>
+              <p class="tl-desc">Medecision, TC Energy, Hyatt Hotels, Indiana Hemophilia &amp; Thrombosis Center, Mercedes-Benz, TGS — each one a different industry, a different set of constraints, a different definition of what good looks like. That range is deliberate. Complex problems in unfamiliar domains are where the most interesting design work happens.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <span class="tl-date">Jan 2020 — Oct 2021</span>
+              <span class="tl-role">Lead UX/UI Designer</span>
+              <span class="tl-company">International Bank</span>
+              <p class="tl-desc">Built and led the design department — establishing research processes, implementing the design system, and creating the conditions for evidence-based decision making across the team. Ran co-creation and prioritization workshops with stakeholders, and recruited the people to sustain it.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <span class="tl-date">2018 — 2019</span>
+              <span class="tl-role">Senior UX/UI Designer</span>
+              <span class="tl-company">Bank of Chile</span>
+              <p class="tl-desc">Designed high-fidelity prototypes across Customer File, Post-Sale, and Sales flows for personal and business segments — translating business needs into product decisions alongside POs and development teams.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <span class="tl-date">2016 — 2018</span>
+              <span class="tl-role">Senior UX/UI Designer</span>
+              <span class="tl-company">Itaú Bank</span>
+              <p class="tl-desc">Led the end-to-end design of the Insurance cell, taking it from a paper-based process to an omnichannel experience. Also redesigned the Credit Card landing page and ran Discovery research for the Investment cell.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work">
+      <div class="section-title"><h2>Selected Projects</h2></div>
+      <div class="projects-stack">
+
+        <!-- Navigait -->
+        <div class="project-card">
+          <div class="proj-content">
+            <div class="client-badge">TGS</div>
+            <h3 class="proj-title">Navigait</h3>
+            <div class="skills-row">
+              <span class="skill-pill">AI Design</span>
+              <span class="skill-pill">Agentic Design</span>
+              <span class="skill-pill">UI Design</span>
+            </div>
+            <p class="proj-desc">TGS operates a global fleet of seismic survey vessels. Managing it means juggling active surveys, signed contracts, and speculative bids — simultaneously. When anything goes wrong, the schedule doesn't just shift. It cascades. Conflict detection is manual, there's no scenario modeling and no financial visibility.</p>
+            <div class="proj-metrics">
+              <p class="metric-text" style="font-weight: 400">Achievements: Automatic conflict detection across the campaign schedule. AI agent that generates optimized scenarios with integrated financial modeling. Scenario comparison view that compresses decision time. Iterated throughout based on direct user input.</p>
+              <p class="metric-text" style="font-weight: 400">Challenge: Data required modeling before it could support reliable outputs. Infrastructure had to be built to support the financial calculations. AI integrated into the design workflow as a capability, not just a deliverable.</p>
+            </div>
+            <a href="navigait.html" class="btn-primary">View Details</a>
+          </div>
+          <div class="project-visual">
+            <img src="assets/covers/cover-navigait.png" alt="Navigait project visual">
+          </div>
+        </div>
+
+        <!-- Hyperlocal BI -->
+        <div class="project-card">
+          <div class="proj-content">
+            <div class="client-badge">Mercedes-Benz</div>
+            <h3 class="proj-title">Hyperlocal BI Platform</h3>
+            <div class="skills-row">
+              <span class="skill-pill">Data Visualization</span>
+              <span class="skill-pill">Architecture Information</span>
+              <span class="skill-pill">UI Design</span>
+            </div>
+            <p class="proj-desc">The goal is to move stakeholders from reporting to confident, data-backed action — built across three phases: descriptive (what's happening), insightful (why it's happening), and prescriptive (what to do about it).</p>
+            <div class="proj-metrics">
+              <p class="metric-text" style="font-weight: 400">Achievements: Designed the experience for a complex data visualization platform and delivered an MVP across phases 1 and 2. Iterated on user feedback until the product matched what users actually needed — not just what was initially scoped.</p>
+              <p class="metric-text" style="font-weight: 400">Challenge: Data quality needed ongoing refinement before it could carry the product. Priorities shifted as feedback came in, and Power BI's limitations required workarounds to preserve the intended experience without rebuilding from scratch.</p>
+            </div>
+            <a href="hyperlocal-bi.html" class="btn-primary">View Details</a>
+          </div>
+          <div class="project-visual">
+            <img src="assets/covers/cover-hyperlocal-bi.png" alt="Hyperlocal BI Platform visual">
+          </div>
+        </div>
+
+        <!-- Chemical Program -->
+        <div class="project-card">
+          <div class="proj-content">
+            <div class="client-badge">ENERGY</div>
+            <h3 class="proj-title">Chemical Program</h3>
+            <div class="skills-row">
+              <span class="skill-pill">Data Visualization</span>
+              <span class="skill-pill">User Research</span>
+              <span class="skill-pill">Architecture Information</span>
+            </div>
+            <p class="proj-desc">A global energy company managing chemical programs across oil wells — both remote and manual — needed to consolidate the software supporting implementation, administration, and field supervision into a single platform.</p>
+            <div class="proj-metrics">
+              <p class="metric-text" style="font-weight: 400">Achievements: Designed a unified monitoring experience for chemical program management across both traditional and remotely controlled wells — consolidating manual and sensor-based indicators into a single, coherent interface.</p>
+              <p class="metric-text" style="font-weight: 400">Challenge: Managing information complexity across multiple user types — each with different needs within the same implementation and monitoring flow — while keeping the interface coherent and the data actionable for all of them.</p>
+            </div>
+            <a href="chemical-program.html" class="btn-primary">View Details</a>
+          </div>
+          <div class="project-visual">
+            <img src="assets/covers/cover-chemical-program.png" alt="Chemical Program visual">
+          </div>
+        </div>
+
+        <!-- Omnichannel Insurance -->
+        <div class="project-card">
+          <div class="proj-content">
+            <div class="client-badge">Itaú Bank</div>
+            <h3 class="proj-title">Omnichannel Insurance</h3>
+            <div class="skills-row">
+              <span class="skill-pill">Service Design</span>
+              <span class="skill-pill">User Research</span>
+              <span class="skill-pill">UI Design</span>
+            </div>
+            <p class="proj-desc">Itaú Bank was mid-digital transformation. The Insurance cell — profitable but inefficient — was generating claims around resolution times, with lengthy manual processes consuming executive time that belonged elsewhere.</p>
+            <div class="proj-metrics">
+              <p class="metric-text" style="font-weight: 400">Achievements: The redesign reduced the sales process from 5 working days to 7 minutes, cut operational load by 63%, and ranked among the top 3 most impactful projects at the bank that year.</p>
+              <p class="metric-text" style="font-weight: 400">Challenge: Connecting to multiple providers — each with different technical contexts and integration requirements — created significant feasibility constraints throughout the project.</p>
+            </div>
+            <a href="omnichannel-insurance.html" class="btn-primary">View Details</a>
+          </div>
+          <div class="project-visual">
+            <img src="assets/covers/cover-omnichannel-insurance.png" alt="Omnichannel Insurance project visual">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <h2>Thank you</h2>
+      <a href="index.html" data-scroll-top>
+        <img src="assets/logo/logo.svg" alt="Lhel Farías" style="width:172px;height:60px;display:block;">
+      </a>
+    </footer>
+
+  </div>
+</main>
+
+<script>
+  // Smooth scroll for in-page anchors
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        var top = target.getBoundingClientRect().top + window.pageYOffset - 96;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
+  });
+  // Scroll to top
+  document.querySelectorAll('[data-scroll-top]').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/')) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+<script>
+  // Dropdown hover delay so mouse can travel to it
+  document.querySelectorAll('.nav-work').forEach(function(item) {
+    var timeout;
+    item.addEventListener('mouseenter', function() {
+      clearTimeout(timeout);
+      var dd = item.querySelector('.nav-dropdown');
+      if (dd) dd.style.display = 'flex';
+    });
+    item.addEventListener('mouseleave', function() {
+      var dd = item.querySelector('.nav-dropdown');
+      timeout = setTimeout(function() {
+        if (dd) dd.style.display = '';
+      }, 200);
+    });
+  });
+</script>
+</body>
+</html>
