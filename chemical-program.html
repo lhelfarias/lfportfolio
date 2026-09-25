@@ -25,7 +25,7 @@
     </button>
     <ul class="nav-menu" id="nav-menu">
       <li><a href="index.html" data-scroll-top>HOME</a></li>
-      <li><a href="index.html#experience">EXPERIENCE</a></li>
+      <li><a href="index.html#about">ABOUT</a></li>
       <li class="nav-item-work">
         <a href="index.html#work">WORK</a>
         <div class="nav-dropdown">
@@ -42,7 +42,7 @@
 <main id="main" class="page">
 
   <!-- PROJECT INTRO -->
-  <article class="project-card">
+  <article class="project-card" data-gallery>
     <div class="proj-content">
       <span class="client-badge">ENERGY</span>
       <h1 class="proj-title">Chemical Program</h1>
@@ -51,14 +51,29 @@
           <li class="skill-pill">User Research</li>
           <li class="skill-pill">Information Architecture</li>
       </ul>
+      <div class="proj-meta">
+        <div class="proj-meta-item">
+          <span class="proj-meta-label">Role</span>
+          <span class="proj-meta-value">Key Designer</span>
+        </div>
+        <div class="proj-meta-item">
+          <span class="proj-meta-label">Duration</span>
+          <span class="proj-meta-value">6 months</span>
+        </div>
+        <div class="proj-meta-item">
+          <span class="proj-meta-label">Team</span>
+          <span class="proj-meta-value">PO, Devs, BA, QA + SLB business stakeholders</span>
+        </div>
+      </div>
       <p class="proj-desc">A global energy company managing chemical programs across oil wells — both remote and manual — needed to consolidate the software supporting implementation, administration, and field supervision into a single platform.</p>
+      <p class="proj-process">I designed the platform's 4 main sections — including a Landing that didn't exist before, giving an overview of all wells and their production status — and to prioritize what to show in each one, I interviewed clients and well operators. The previous software organized information by area of interest; I reorganized the navigation to be well-centric, grouping each well's production volume, lab analysis, and chemicals together, which is how users preferred to work. I also designed a simple modal for remotely raising or lowering chemical injection — a simple interaction for a physically delicate operation. The engagement covered research and design through handoff to development; no production data is available.</p>
       <div class="proj-metrics">
         <p class="metric-text">Achievements: Designed a unified monitoring experience for chemical program management across both traditional and remotely controlled wells — consolidating manual and sensor-based indicators into a single, coherent interface.</p>
         <p class="metric-text">Challenge: Managing information complexity across multiple user types — each with different needs within the same implementation and monitoring flow — while keeping the interface coherent and the data actionable for all of them.</p>
       </div>
     </div>
     <div class="project-visual">
-      <img src="assets/covers/cover-chemical-program.png" alt="Chemical Program">
+      <a class="mockup-link" href="assets/covers/cover-chemical-program.png"><img src="assets/covers/cover-chemical-program.png" alt="Chemical Program"></a>
     </div>
   </article>
 
@@ -107,10 +122,14 @@
       </div>
     </div>
     <div class="info-card">
-      <h3 class="card-label">Design Achievements</h3>
+      <h3 class="card-label">Outcomes</h3>
       <p class="info-text">Inclusion of tools according to user tasks. Improvement of Information Architecture for navigation and data showcase. Update to company UI.</p>
     </div>
   </section>
+
+  <div class="case-cta">
+    <a class="btn-primary" href="omnichannel-insurance.html">Next Project: Omnichannel Insurance<span class="visually-hidden"> (view case study)</span></a>
+  </div>
 
 </main>
 

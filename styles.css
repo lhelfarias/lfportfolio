@@ -8,7 +8,7 @@
    4. Layout
    5. Shared components
    6. Home: hero
-   7. Home: experience
+   7. Home: about
    8. Projects (home list + case-study hero)
    9. Footer
    10. Case studies
@@ -308,23 +308,24 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .skill-pill {
   display: inline-flex; align-items: center;
   padding: 6px 14px;
-  border: 1.5px solid var(--color-accent);
+  border: 1.5px solid var(--color-muted);
   border-radius: 40px;
   font-family: var(--font-pill);
   font-size: 12px; font-weight: 700; line-height: 1.25;
   letter-spacing: 1px;
-  color: var(--color-accent);
+  color: var(--color-muted);
 }
 
 .btn-primary {
   display: inline-flex; align-items: center; justify-content: center;
   width: fit-content;
-  padding: 10px 29px 12px;
+  margin-top: 8px;
+  padding: 13px 32px 15px;
   border-radius: var(--radius-pill);
   background: var(--color-accent);
   color: #fff;
   font-family: var(--font-display);
-  font-size: 0.95rem; font-weight: 700; line-height: 1.6;
+  font-size: 1rem; font-weight: 700; line-height: 1.6;
   text-align: center;
   text-decoration: none;
   transition: background-color 0.2s;
@@ -413,87 +414,110 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 
 
-/* 7. Home: experience
+/* 7. Home: about
    ========================================================================== */
 
-.exp-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 543px) minmax(0, 1fr);
-  gap: 24px;
-}
-
-@media (max-width: 1100px) {
-  .exp-grid { grid-template-columns: minmax(0, 1fr); }
-}
-
-.stmt-card,
-.timeline-card {
+.about-body {
   display: flex; flex-direction: column;
-  padding: var(--card-pad);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--ring);
+  gap: clamp(32px, 5vw, 48px);
 }
-.stmt-card { gap: 20px; background: var(--color-surface); }
-.timeline-card { gap: 24px; background: var(--color-bg); }
 
-.statement-text {
+.about-intro-row {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(24px, 4vw, 40px);
+}
+
+.about-badge { width: 140px; height: auto; flex-shrink: 0; }
+
+.about-intro {
+  flex: 1 1 auto;
+  min-width: 0;
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 1rem + 0.8vw, 1.6rem);
-  line-height: 1.4;
-  letter-spacing: -0.5px;
+  line-height: 1.45;
+  letter-spacing: -0.3px;
+  max-width: 640px;
 }
 
-.subsection { display: flex; flex-direction: column; gap: 10px; }
-
-.education-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-.edu-item { display: flex; flex-direction: column; gap: 10px; }
-.edu-logo-wrap { height: 50px; display: flex; align-items: center; }
-.edu-logo-wrap img { width: auto; max-width: min(110px, 100%); max-height: 50px; object-fit: contain; }
-.edu-desc { font-size: 13px; line-height: 1.4; letter-spacing: 0.25px; color: var(--color-muted); }
-
-/* Small phones: logo beside its text so long words don't collide. */
-@media (max-width: 480px) {
-  .education-row { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-  .edu-item { flex-direction: row; align-items: center; gap: 16px; }
-  .edu-logo-wrap { flex: 0 0 96px; }
+@media (max-width: 560px) {
+  .about-intro-row { flex-direction: column; gap: 20px; }
+  .about-badge { width: 100px; }
 }
 
-.tools-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
-.tools-row img { width: auto; height: 36px; }
+.about-divider { border: 0; border-top: 1px solid var(--color-border); margin: 0; }
 
-/* Timeline */
-.timeline {
-  --tl-indent: 32px;
-  position: relative;
-  display: flex; flex-direction: column; gap: 40px;
-  padding-inline: var(--tl-indent);
-}
-.timeline::before {
-  content: '';
-  position: absolute; top: 2px; bottom: 0; left: 0;
-  width: 2px;
-  background: var(--color-border);
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 400px) minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 72px);
+  align-items: start;
 }
 
-.tl-item { position: relative; display: flex; flex-direction: column; gap: 1px; }
-.tl-item::before {
-  content: '';
-  position: absolute; top: 5px; left: calc(-1 * var(--tl-indent) - 6px);
-  width: 14px; height: 14px;
-  border-radius: 50%;
-  background: var(--color-accent);
-  box-shadow: inset 0 0 0 3px var(--color-bg);
+.about-col-left { display: flex; flex-direction: column; gap: clamp(32px, 5vw, 48px); }
+
+.about-col-right {
+  padding-left: clamp(40px, 6vw, 72px);
+  border-left: 1px solid var(--color-border);
 }
 
-.tl-date,
-.tl-company { font-size: 0.9rem; font-weight: 600; line-height: 1.6; }
-.tl-date { color: var(--color-muted); }
-.tl-company { color: var(--color-accent); }
-.tl-role { font-size: 0.95rem; font-weight: 700; line-height: 1.6; }
-.tl-desc { margin-top: 6px; font-size: 0.95rem; line-height: 1.6; color: var(--color-muted); }
+.about-block { display: flex; flex-direction: column; }
 
+.about-label {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin: 0 0 20px;
+}
+
+.about-edu-list { display: flex; flex-direction: column; gap: 14px; list-style: none; margin: 0; padding: 0; }
+.about-edu-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.95rem;
+}
+.about-edu-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.about-edu-row img { height: 32px; width: auto; max-width: 110px; object-fit: contain; flex-shrink: 0; }
+.about-edu-row span { color: var(--color-muted); text-align: right; }
+
+.about-toolkit { margin: 0 0 16px; font-size: 1.05rem; line-height: 1.8; }
+
+.about-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.about-tools img { width: auto; height: 32px; }
+
+.about-timeline { display: flex; flex-direction: column; gap: 40px; }
+.about-tl-row { display: flex; gap: 32px; flex-wrap: wrap; }
+.about-tl-date {
+  flex: 0 0 120px;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--color-accent);
+}
+.about-tl-content { flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.about-tl-role { font-size: 1.05rem; font-weight: 700; }
+.about-tl-desc { margin: 0; font-size: 0.95rem; line-height: 1.7; color: var(--color-muted); max-width: 640px; }
+
+/* Tablet: stack the two columns, swap the vertical divider for a horizontal one. */
+@media (max-width: 860px) {
+  .about-grid { grid-template-columns: 1fr; gap: clamp(32px, 5vw, 48px); }
+  .about-col-right {
+    padding-left: 0;
+    border-left: 0;
+    padding-top: clamp(32px, 5vw, 48px);
+    border-top: 1px solid var(--color-border);
+  }
+}
+
+/* Phones: simplify rows further. */
 @media (max-width: 600px) {
-  .timeline { --tl-indent: 24px; padding-inline-end: 0; }
+  .about-tl-row { flex-direction: column; gap: 6px; }
+  .about-tl-date { flex: none; }
+  .about-tl-content { flex: none; }
+  .about-edu-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .about-edu-row span { text-align: left; }
 }
 
 
@@ -551,6 +575,33 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   color: var(--color-muted);
 }
 
+.proj-meta {
+  display: flex; flex-wrap: wrap;
+  gap: 28px;
+  padding: 16px 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.proj-meta-item { display: flex; flex-direction: column; gap: 2px; }
+.proj-meta-label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.proj-meta-value { font-size: 0.9rem; font-weight: 600; }
+
+@media (max-width: 500px) {
+  .proj-meta { flex-direction: column; gap: 14px; }
+}
+
+.proj-process {
+  margin: 0;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
 .proj-metrics {
   display: flex; flex-direction: column; gap: 8px;
   padding: clamp(20px, 2.5vw, 24px);
@@ -571,6 +622,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .project-card { flex-direction: column; min-height: 0; }
   .project-visual { order: -1; }
   .project-visual img { height: auto; }
+}
+
+
+/* 8b. Case-study end CTA
+   ========================================================================== */
+
+.case-cta {
+  display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: clamp(32px, 5vw, 48px) 0 0;
 }
 
 

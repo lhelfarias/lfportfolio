@@ -25,7 +25,7 @@
     </button>
     <ul class="nav-menu" id="nav-menu">
       <li><a href="index.html" data-scroll-top>HOME</a></li>
-      <li><a href="index.html#experience">EXPERIENCE</a></li>
+      <li><a href="index.html#about">ABOUT</a></li>
       <li class="nav-item-work">
         <a href="index.html#work">WORK</a>
         <div class="nav-dropdown">
@@ -42,7 +42,7 @@
 <main id="main" class="page">
 
   <!-- PROJECT INTRO -->
-  <article class="project-card">
+  <article class="project-card" data-gallery>
     <div class="proj-content">
       <span class="client-badge">TGS</span>
       <h1 class="proj-title">Navigait</h1>
@@ -51,14 +51,29 @@
           <li class="skill-pill">Agentic Design</li>
           <li class="skill-pill">UI Design</li>
       </ul>
+      <div class="proj-meta">
+        <div class="proj-meta-item">
+          <span class="proj-meta-label">Role</span>
+          <span class="proj-meta-value">Lead Designer</span>
+        </div>
+        <div class="proj-meta-item">
+          <span class="proj-meta-label">Duration</span>
+          <span class="proj-meta-value">6 months</span>
+        </div>
+        <div class="proj-meta-item">
+          <span class="proj-meta-label">Team</span>
+          <span class="proj-meta-value">Devs, Data Science, QA, DM, PO, BA + IT/Commercial stakeholders</span>
+        </div>
+      </div>
       <p class="proj-desc">TGS operates a global fleet of seismic survey vessels. Managing it means juggling active surveys, signed contracts, and speculative bids — simultaneously. When anything goes wrong, the schedule doesn't just shift. It cascades. Conflict detection is manual, there's no scenario modeling and no financial visibility. Objectives include increasing vessel occupancy, reducing time on approval cycle, and optimizing business metrics.</p>
+      <p class="proj-process">Most of what shipped came straight from user research — conflict detection, scenario creation, and the AI agent's logic were all things research showed were needed. The one exception was the financial comparison view: stakeholders asked for it directly, wanting numbers to back their decisions. The AI agent works in the background, flagging conflicts and surfacing relevant information while a scenario is being built.</p>
       <div class="proj-metrics">
         <p class="metric-text">Achievements: Automatic conflict detection across the campaign schedule. AI agent that generates optimized scenarios with integrated financial modeling. Scenario comparison view that compresses decision time. Iterated throughout based on direct user input.</p>
         <p class="metric-text">Challenge: Data required modeling before it could support reliable outputs. Infrastructure had to be built to support the financial calculations. AI integrated into the design workflow as a capability, not just a deliverable.</p>
       </div>
     </div>
     <div class="project-visual">
-      <img src="assets/covers/cover-navigait.png" alt="Navigait visual">
+      <a class="mockup-link" href="assets/covers/cover-navigait.png"><img src="assets/covers/cover-navigait.png" alt="Navigait visual"></a>
     </div>
   </article>
 
@@ -108,19 +123,23 @@
       <a class="btn-primary" href="https://claude.ai/public/artifacts/3a68da14-4074-43b6-861a-8c118892c58a" target="_blank" rel="noopener">CLICK HERE FOR THE PROTOTYPE<span class="visually-hidden"> (opens in a new tab)</span></a>
     </div>
     <div class="info-card">
-      <h3 class="card-label">Design Achievements</h3>
+      <h3 class="card-label">Outcomes</h3>
       <div class="info-columns">
         <div class="info-col">
           <p class="info-text"><strong>Monitoring</strong> — Automatic conflict detection across the campaign schedule. Drag &amp; drop interaction for scenario creation. Entry points to both manual and AI-driven optimization flows.</p>
           <p class="info-text"><strong>Scenario Creation</strong> — Real-time financial modeling tied to campaign decisions. AI agent optimization anchored to business KPIs. Calculations delivered on the fly — no waiting weeks for a number.</p>
         </div>
         <div class="info-col">
-          <p class="info-text"><strong>Financial Comparison</strong> — Select from saved scenarios and compare financial outcomes side by side. No waiting weeks for numbers.</p>
+          <p class="info-text"><strong>Financial Comparison</strong> — Select from saved scenarios and compare financial outcomes side by side, replacing full-team meetings with a report the C-suite reviews on its own.</p>
           <p class="info-text"><strong>AI Agent</strong> — Continuously monitors for internal and external conflicts, and surfaces relevant information and assistance directly within the campaign context.</p>
         </div>
       </div>
     </div>
   </section>
+
+  <div class="case-cta">
+    <a class="btn-primary" href="hyperlocal-bi.html">Next Project: Hyperlocal BI Platform<span class="visually-hidden"> (view case study)</span></a>
+  </div>
 
 </main>
 
