@@ -729,6 +729,24 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .mockup-frame-narrow { flex: 1 1 calc(50% - 8px); }
 }
 
+/* One column per step, each step stacking its own screens (Apex) */
+.step-cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: 16px;
+}
+.step-col { display: flex; flex-direction: column; gap: 16px; }
+/* .mockup-frame uses flex:1 1 0 to share width in a row; in a column that would
+   collapse its height to zero, so each frame sizes to its own content here. */
+.step-col .mockup-frame { flex: 0 0 auto; }
+
+/* Collapse to one step per block, two screens per row */
+@media (max-width: 900px) {
+  .step-cols { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .step-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 /* Achievements / Outcomes cards */
 .info-card {
   display: flex; flex-direction: column; gap: 16px;
