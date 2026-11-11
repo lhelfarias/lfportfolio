@@ -485,8 +485,14 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 .about-toolkit { margin: 0 0 16px; font-size: 1.05rem; line-height: 1.8; }
 
-.about-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.about-tools { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 22px; }
 .about-tools img { width: auto; height: 32px; }
+/* logo above its name; a fixed width keeps the logos on a shared baseline */
+.about-tools .tool { display: flex; flex-direction: column; align-items: center; gap: 7px; width: 62px; }
+.about-tools .tool span {
+  font-size: 0.75rem; line-height: 1.2;
+  color: var(--color-muted); text-align: center;
+}
 
 .about-timeline { display: flex; flex-direction: column; gap: 40px; }
 .about-tl-row { display: flex; gap: 32px; flex-wrap: wrap; }
